@@ -9,6 +9,11 @@ This part of the project comprises two days:
 2. Implement the `in_order_print`, `bft_print`, and `dft_print` methods
    on the BSTNode class.
 """
+
+from queue import Queue
+from stack import Stack
+
+
 class BSTNode:
     def __init__(self, value):
         self.value = value
@@ -66,17 +71,63 @@ class BSTNode:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
     def in_order_print(self, node):
-        pass
+        if self.left:
+            self.left.in_order_print(node)
+        print(self.value)
+        if self.right:
+            self.right.in_order_print(node)
+        
 
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+        # create a queue for nodes
+        # add the first node to the queue
+        level = Queue()
+        level.enqueue(node)
+
+        # remove the first node from the queue
+        # print the removed node 
+       
+        while level.len() > 0:
+            next_level = Queue()
+            while level.len() > 0:
+                cur_node = level.dequeue()
+                print(cur_node.value)
+
+                 # add all children into the queue
+                if cur_node.left:
+                    next_level.enqueue(cur_node.left)
+                if cur_node.right:
+                    next_level.enqueue(cur_node.right)
+                
+
+                level = next_level
+
+        
+
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
     def dft_print(self, node):
-        pass
+        # create a stack for nodes
+        # add the first node to the stack
+        branches = Stack()
+        branches.push(node)
+
+        # while the stack is not empty
+            # get the current node from the top of the stack
+            # print that node
+        while branches.len() > 0:
+            cur_node = branches.pop()
+            print(cur_node.value)
+
+            # add all children to the stack
+            if cur_node.left:
+                branches.push(cur_node.left)
+            if cur_node.right:
+                branches.push(cur_node.right)
+ 
 
     # Stretch Goals -------------------------
     # Note: Research may be required
