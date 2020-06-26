@@ -14,9 +14,7 @@ Stretch: What if you could only use instances of your Stack class to implement t
          What would that look like? How many Stacks would you need? Try it!
 """
 
-import sys
 
-sys.path.append('../singly_linked_list')
 from singly_linked_list import LinkedList
 
 
